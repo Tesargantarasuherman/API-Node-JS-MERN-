@@ -36,3 +36,7 @@ declaration to index.js
 //allow error CORS ORIGIN
     in index.js
         add app.use()
+//send data from request Body
+    npm install body-parser
+    add import parse (ex. "const bodyParser = require('body-parse')");
+)
