@@ -16,3 +16,16 @@
         }
     )
     run with("npm start")
+//Basic Router
+    import Router from express (const router =express.Router())
+    use router("router.use())
+    router function have default param (req,res,next)
+    next(for next method)
+    call router with function (app.use('/',router))
+    with specific router call with router.methode('get')
+//Restructure Project Node JS
+create folder(rsc)
+    - src 
+        -folder controller
+        -folder models
+        -folder routes
