@@ -1,0 +1,18 @@
+//Create the project NODE
+    open terminal
+    create directory
+    npm init
+//Create the server with EXPRESS JS
+    create file in folder (index.JS)
+    install express(npm install --save express)
+    in index.js
+        import express to project (ex."const express = require('express)'")
+        create variabel app and call import express (ex."const app =express()")
+        create port to runnin project("app.listen(3000)")
+    add package(npm install -g nodemon)
+    in package.json(
+        "scripts": {
+            "start": "nodemon index.js",
+        }
+    )
+    run with("npm start")
