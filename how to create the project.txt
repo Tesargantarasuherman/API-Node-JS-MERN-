@@ -27,5 +27,9 @@
 create folder(rsc)
     - src 
         -folder controller
+            -controller.js
         -folder models
+            -controller.js
         -folder routes
+            -controller.js
+declaration to index.js
