@@ -33,3 +33,6 @@ create folder(rsc)
         -folder routes
             -controller.js
 declaration to index.js
+//allow error CORS ORIGIN
+    in index.js
+        add app.use()
