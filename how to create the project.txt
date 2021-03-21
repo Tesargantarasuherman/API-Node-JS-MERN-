@@ -35,8 +35,57 @@ create folder(rsc)
 declaration to index.js
 //allow error CORS ORIGIN
     in index.js
-        add app.use()
+        add app.use(res.setHeader())
 //send data from request Body
     npm install body-parser
-    add import parse (ex. "const bodyParser = require('body-parse')");
-)
+    in index add import parse (ex. "const bodyParser = require('body-parse')");
+//Standar API
+    {root.api}/v1/{grouping}
+    Ex:
+        http://mern-api.iamsuherman.com/{version}/{grouping}/{endpoint}
+
+    - Standar Status Response
+
+    200 - OK                     --> Call API Success
+    201 - CREATED                --> POST Success
+    400 - BAD REQUEST            --> Error on Client Side (Bisa input yang salah dll)
+    401 - UNATHORIZED            --> User not authorized to the request
+    403 - FORBIDDEN              --> User not allowed to Access
+    404 - NOT FOUND              --> Request endpoint not FOUND
+    500 - INTERNAL SERVER ERROR  --> Error on server side 
+    502 - BAD GATEWAY            --> Invalid response from another request
+
+    Grouping: ex. Authentication
+
+    [1]-Register
+        {root.api}/version/auth/register
+        req:
+            {
+                "name":"lorem",
+                "email:"ex@gmail.com",
+                "password":"123456"
+            }
+        res:
+            {
+                "message":"Register Success",
+                "data":{
+                    "id":1,
+                    "name":"Testing",
+                    "email":"ex@gmail.com",
+                    "password":"123456"
+                }
+            }
+        error-response:
+        
+        400 -> input yang anda masukkan tidak valid
+
+    [2]-login
+        {root.api}/version/auth/login
+
+    
+    Grouping: main-app
+
+    [1] create post
+    [2] get post
+    [3] update post
+    [4] delete post
