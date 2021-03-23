@@ -1,5 +1,5 @@
 exports.createProduct =(req,res,next)=>{
-    // console.log('req',req.body)
+    console.log('req',req.body)
     const name  = req.body.name;
     const price = req.body.price;
     

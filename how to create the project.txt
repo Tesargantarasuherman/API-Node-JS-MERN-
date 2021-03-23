@@ -2,6 +2,7 @@
     open terminal
     create directory
     npm init
+======================================================================================
 //Create the server with EXPRESS JS
     create file in folder (index.JS)
     install express(npm install --save express)
@@ -16,6 +17,7 @@
         }
     )
     run with("npm start")
+======================================================================================
 //Basic Router
     import Router from express (const router =express.Router())
     use router("router.use())
@@ -23,6 +25,7 @@
     next(for next method)
     call router with function (app.use('/',router))
     with specific router call with router.methode('get')
+======================================================================================
 //Restructure Project Node JS
 create folder(rsc)
     - src 
@@ -33,12 +36,15 @@ create folder(rsc)
         -folder routes
             -controller.js
 declaration to index.js
+======================================================================================
 //allow error CORS ORIGIN
     in index.js
         add app.use(res.setHeader())
+======================================================================================
 //send data from request Body
     npm install body-parser
     in index add import parse (ex. "const bodyParser = require('body-parse')");
+======================================================================================
 //Standar API
     {root.api}/v1/{grouping}
     Ex:
@@ -76,7 +82,7 @@ declaration to index.js
                 }
             }
         error-response:
-        
+
         400 -> input yang anda masukkan tidak valid
 
     [2]-login
@@ -89,3 +95,4 @@ declaration to index.js
     [2] get post
     [3] update post
     [4] delete post
+======================================================================================

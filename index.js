@@ -1,11 +1,14 @@
 const express =require('express');
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser')
 
 const app = express();
 
-const productRoutes = require('./src/routes/products')
+const productRoutes = require('./src/routes/products');
+const authRoutes = require('./src/routes/auth');
 
-app.use(bodyParser.json())//Type JSON
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json());
 
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');
@@ -13,8 +16,10 @@ app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Headers','Content-Type','Authorization');
     next()
 })
-
+// endpoint first
 app.use('/v1/costumer',productRoutes);
+app.use('/v1/auth',authRoutes);
+app.use('/v1/auth',authRoutes);
 
 
 
