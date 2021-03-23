@@ -3,10 +3,10 @@ var bodyParser = require('body-parser')
 
 const app = express();
 
-const productRoutes = require('./src/routes/products');
 const authRoutes = require('./src/routes/auth');
+const blogRoutes = require('./src/routes/blog');
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(bodyParser.json());
 
@@ -17,9 +17,8 @@ app.use((req,res,next)=>{
     next()
 })
 // endpoint first
-app.use('/v1/costumer',productRoutes);
 app.use('/v1/auth',authRoutes);
-app.use('/v1/auth',authRoutes);
+app.use('/v1/blog',blogRoutes);
 
 
 

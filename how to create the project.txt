@@ -96,3 +96,9 @@ declaration to index.js
     [3] update post
     [4] delete post
 ======================================================================================
+//Validasi
+    install express validator ("npm i express-validator")
+    in route import body from express validator
+    add array in route
+    cek in controller 
+    import validationresult from express-validator
