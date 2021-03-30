@@ -1,5 +1,6 @@
 const express =require('express');
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -19,7 +20,17 @@ app.use((req,res,next)=>{
 // endpoint first
 app.use('/v1/auth',authRoutes);
 app.use('/v1/blog',blogRoutes);
+// function errors
+app.use((error,req,res,next)=>{
+    const status = error.errorStatus || 500;
+    const message = error.message;
+    const data = error.data;
+    res.status(status).json({message:message,data:data});
+})
+mongoose.connect('mongodb+srv://iamsuherman:pI7LQB0o9IxBBnxB@cluster0.w3nsw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+.then(()=>{
+    app.listen(3000,()=>console.log('Connection Success'));
+})
+.catch(err=> console.log(err));
 
 
-
-app.listen(3000);

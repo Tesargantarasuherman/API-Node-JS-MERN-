@@ -5,6 +5,9 @@ const router = express.Router();
 const blogController =require('../controllers/blogController');
 
 router.post('/post',
-[body('title').isLength({min:5}),body('content').isLength({min:5})],blogController.createBLogPost);
+[
+    body('title').isLength({min:5}).withMessage('input title minimum 5 karakter'),
+    body('content').isLength({min:5}).withMessage('input content mimimum 5 karakter')
+],blogController.createBLogPost);
 
 module.exports = router;

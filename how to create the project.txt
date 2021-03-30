@@ -102,3 +102,42 @@ declaration to index.js
     add array in route
     cek in controller 
     import validationresult from express-validator
+    add midleware in index js(app.use(error,))
+======================================================================================
+//Create Project Mongo DB
+    create new project
+    add new cluster
+    aws
+    singapore
+    go to menu database Access(for add user can be access)
+    add new database user
+    auth method (password)
+    username: iamsuherman
+    pass(generate) : pI7LQB0o9IxBBnxB
+    add privileges(admin/read and write)
+    click add user
+    go to menu network Access(for ip user can access mongodb)
+    click add current ip address
+//Connect Node JS to mongodb
+    go to menu cluster click "Connect"
+    click "Connect your Application"
+    copy link mongodb
+    open index in your project
+    install library mongoose "npm i mongoose"
+    import mongoose in index.js
+    Connect to mongoose
+    input the password
+    add the function Connect
+//Setup mongodb
+create model
+    in model import mongoose
+             import Schema
+             create a new Schema
+             add column in Schema
+             in mongoose have a default value timestamp with add (timestamp :true)
+             then export mongoose.model
+// Save Post(Blog) to mongoDB
+    in controller(blog) post 
+             import model from model(blog) post
+             create a variabel for Post (blog) call from import model
+
