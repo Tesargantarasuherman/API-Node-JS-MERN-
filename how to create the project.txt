@@ -150,4 +150,6 @@ create model
              create midleware
     create folder images in route project
     in controller.js
-             
+             create midleware
+    in model 
+            add column image

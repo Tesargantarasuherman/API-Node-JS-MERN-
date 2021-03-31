@@ -2,12 +2,8 @@ const {validationResult} = require('express-validator');
 const BlogPost = require ('../models/blog');
 
 exports.createBLogPost = (req,res,next) =>{
-    const title = req.body.title;
-    // const image = req.body.image;
-    const content = req.body.content;
-
     const errors = validationResult(req)
-
+    // middleware check
     if(!errors.isEmpty()){
         const err = new Error('Invalid Input')
         err.errorStatus = 400;
@@ -15,12 +11,22 @@ exports.createBLogPost = (req,res,next) =>{
         throw err;
 
     }
+    if(!req.file){
+        const err = new Error('Image Harus di Upload')
+        err.errorStatus = 422;
+        throw err;
+    }
+
+    // end middleware
+    const title = req.body.title;
+    const image = req.file.path;
+    const content = req.body.content;
+
     const Posting = new BlogPost({
         post_id :1,
         title:title,
-        // image:image,
+        image:image,
         content : content,
-        created_at:"23/03/2021",
         author:{
             uid:1,
             name:'iamsuherman'

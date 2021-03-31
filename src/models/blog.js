@@ -10,9 +10,11 @@ const BlogPost = new Schema({
         type: String,
         required: true
     },
-    // image:{
-
-    // },
+    image:{
+        type : String,
+        // file save to DIGITAL OCEAN
+        required: true
+    },
     author:{
         type:Object,
         required: true
