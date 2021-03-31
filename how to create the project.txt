@@ -140,4 +140,14 @@ create model
     in controller(blog) post 
              import model from model(blog) post
              create a variabel for Post (blog) call from import model
-
+             then save
+             then cek in mongoDB Atlas in clusters->collections
+//Upload image in Node JS
+    install multer (npm i multer) -> middleware for handler multipart/form-data
+    in index.js
+             import multer
+             setup in index js
+             create midleware
+    create folder images in route project
+    in controller.js
+             

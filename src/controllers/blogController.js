@@ -15,22 +15,23 @@ exports.createBLogPost = (req,res,next) =>{
         throw err;
 
     }
-
-    const result = {
-        message : 'Create Blog Success',
-        data:{
-            post_id :1,
-            title:title,
-            // image:image,
-            content : content,
-            created_at:"23/03/2021",
-            author:{
-                user_id:1,
-                name:'lorem'
-            }
+    const Posting = new BlogPost({
+        post_id :1,
+        title:title,
+        // image:image,
+        content : content,
+        created_at:"23/03/2021",
+        author:{
+            uid:1,
+            name:'iamsuherman'
         }
-    };
-    res.status(201).json(result)
+    })
+    Posting.save().then(result =>{
+        res.status(201).json({
+            message : 'Create Blog Success',
+            data:result
+        })
+    })
     next()
     // res.status(201).json({
     //     message : 'Create Blog Success',
