@@ -30,9 +30,9 @@ exports.createBLogPost = (req,res,next) =>{
         res.status(201).json({
             message : 'Create Blog Success',
             data:result
-        })
+        });
+        next()
     })
-    next()
     // res.status(201).json({
     //     message : 'Create Blog Success',
     //     data:{
