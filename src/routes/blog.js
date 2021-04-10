@@ -10,4 +10,6 @@ router.post('/post',
     body('content').isLength({min:5}).withMessage('input content mimimum 5 karakter')
 ],blogController.createBLogPost);
 
+router.get('/posts',blogController.getAllPosts)
+
 module.exports = router;

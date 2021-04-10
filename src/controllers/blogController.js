@@ -56,3 +56,15 @@ exports.createBLogPost = (req,res,next) =>{
     // next()
 
 }
+exports.getAllPosts = (req,res,next)=>{
+    BlogPost.find()
+    .then(result => {
+        res.status(200).json({
+            message:'Data Blog Post Berhasil Di Panggil',
+            data:result
+        });
+    })
+    .catch(err =>{
+        next(err);
+    })
+}

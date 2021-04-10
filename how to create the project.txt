@@ -156,4 +156,8 @@ create model
 // Handle error to call image  
     go to index.js
     export path from default NODE JS
-    add middleware and in middleware join to path       
+    add middleware and in middleware join to path
+//Get All data
+    create route in routes/route.js
+    call the controller@methode in route
+    in  controller@methode call data from model 
