@@ -68,3 +68,24 @@ exports.getAllPosts = (req,res,next)=>{
         next(err);
     })
 }
+exports.getPostById =(req,res,next) => {
+    const id = req.params.postId ;
+    BlogPost.findById(id)
+    .then(result => {
+        if(!result){
+            const err = new Error('ID Tidak Di Temukan') ;
+            error.errorStatus = 404;
+            throw error ;    
+        }
+        else{
+            res.status(200).json({
+                message:'Data Blog Post By ID Berhasil Di Panggil',
+                data:result
+            });
+        }
+
+    })
+    .catch(err =>{
+        next(err);
+    })
+}

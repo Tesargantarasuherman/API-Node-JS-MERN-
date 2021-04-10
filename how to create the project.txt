@@ -161,3 +161,6 @@ create model
     create route in routes/route.js
     call the controller@methode in route
     in  controller@methode call data from model 
+// Get Data By id
+    create route in routes/route.js
+    create methode in controller
