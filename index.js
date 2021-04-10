@@ -2,7 +2,7 @@ const express =require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const multer = require('multer');
-
+const path = require('path');
 const app = express();
 
 const authRoutes = require('./src/routes/auth');
@@ -34,10 +34,13 @@ const fileFilter = (req,file,cb)=>{
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // middleware multer
-    app.use(multer({storage:fileStorage,fileFilter:fileFilter}).single('image'));
+app.use(multer({storage:fileStorage,fileFilter:fileFilter}).single('image'));
 //end middleware multer
 
 app.use(bodyParser.json());
+// Handle error to call image  
+app.use('/image',express.static(path.join(__dirname,'images'))) /* jika ada pemanggilan route images */
+// end handle error to call image
 
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');

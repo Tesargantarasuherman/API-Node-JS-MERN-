@@ -153,3 +153,7 @@ create model
              create midleware
     in model 
             add column image
+// Handle error to call image  
+    go to index.js
+    export path from default NODE JS
+    add middleware and in middleware join to path       
