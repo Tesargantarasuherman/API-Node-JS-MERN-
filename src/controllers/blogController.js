@@ -1,7 +1,8 @@
 const {validationResult} = require('express-validator');
 const BlogPost = require ('../models/blog');
 const path = require('path');
-const fs = require('fs')
+const fs = require('fs');
+const { count } = require('../models/blog');
 // Tambah Data Post
 exports.createBLogPost = (req,res,next) =>{
     const errors = validationResult(req)
@@ -60,16 +61,48 @@ exports.createBLogPost = (req,res,next) =>{
 }
 // Ambil Seluruh Data Post
 exports.getAllPosts = (req,res,next)=>{
+    const currentPage = req.query.page || 1;
+    const perPage = req.query.perPage || 5 ;/* || is default value */
+    let totalItems;
+    
+//Get All Post
+    // BlogPost.find()
+    // .then(result => {
+    //     res.status(200).json({
+    //         message:'Data Blog Post Berhasil Di Panggil',
+    //         data:result
+    //     });
+    // })
+    // .catch(err =>{
+    //     next(err);
+    // })
+//End Get All Post
+
+//Pagination
+ 
     BlogPost.find()
+    .countDocuments()
+    .then( count => {
+
+       totalItems = count;
+
+       return BlogPost.find()
+       .skip((parseInt(currentPage - 1) * perPage))
+       .limit(parseInt(perPage)); 
+    })
     .then(result => {
         res.status(200).json({
             message:'Data Blog Post Berhasil Di Panggil',
-            data:result
+            data : result,
+            totalData : totalItems,
+            per_page : perPage,
+            current_page : currentPage,
         });
     })
-    .catch(err =>{
-        next(err);
+    .catch(err=>{
+        next(err)
     })
+//End Pagination
 }
 // Lihat Detail Post
 exports.getPostById =(req,res,next) => {

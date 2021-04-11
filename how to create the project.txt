@@ -179,4 +179,9 @@ create model
     import path
     join path and __dirname (filePath=>define folder images ,__dirname =>define to folder controller)
     for delete, import filesystem(fs)
+//Pagination
+    add query param in route
+    in controller add variabel to put query param
+    get data from model
+    create the function Pagination
 
