@@ -170,3 +170,13 @@ create model
     in route add vaidation LIKE route Create
     in controller@method add postID (ex 'const postId = req.params.postId;')//req.params.postId=>from route
     find by ID from model 
+//Delete Data
+    create route in routes/route.js (use DELETE)
+    create methode in controller 
+    in controller@method add postID (ex 'const postId = req.params.postId;')//req.params.postId=>from route
+    find by ID from model 
+    if find data == true delete image create function delete image
+    import path
+    join path and __dirname (filePath=>define folder images ,__dirname =>define to folder controller)
+    for delete, import filesystem(fs)
+

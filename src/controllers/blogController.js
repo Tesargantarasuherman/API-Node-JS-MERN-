@@ -1,6 +1,8 @@
 const {validationResult} = require('express-validator');
 const BlogPost = require ('../models/blog');
-
+const path = require('path');
+const fs = require('fs')
+// Tambah Data Post
 exports.createBLogPost = (req,res,next) =>{
     const errors = validationResult(req)
     // middleware check
@@ -56,6 +58,7 @@ exports.createBLogPost = (req,res,next) =>{
     // next()
 
 }
+// Ambil Seluruh Data Post
 exports.getAllPosts = (req,res,next)=>{
     BlogPost.find()
     .then(result => {
@@ -68,6 +71,7 @@ exports.getAllPosts = (req,res,next)=>{
         next(err);
     })
 }
+// Lihat Detail Post
 exports.getPostById =(req,res,next) => {
     const id = req.params.postId ;
     BlogPost.findById(id)
@@ -89,6 +93,7 @@ exports.getPostById =(req,res,next) => {
         next(err);
     })
 }
+//Update Post
 exports.updatePostById =(req,res,next)=>{
     const errors = validationResult(req)
     // middleware check
@@ -135,4 +140,35 @@ exports.updatePostById =(req,res,next)=>{
     .catch(err =>{
         next(err);
     })
+}
+// Hapus Data Post
+exports.deletePostById =(req,res,next)=>{
+    const postId = req.params.postId;
+
+    BlogPost.findById(postId)
+    .then(post=>{
+        if(!post){
+            const err = new Error('ID Tidak Ditemukan');
+            err.errorStatus = 404;
+            throw err;
+        }
+        else{
+
+            deleteImage(post.image);
+
+            return BlogPost.findByIdAndRemove(postId);
+        }
+    }).then(result=>{
+        res.status(200).json({
+            message:'Hapus Data Berhasil',
+            data:result
+        });
+    })
+    .catch(err =>{
+        next(err);
+    })}
+//Hapus Gambar Post
+const deleteImage = (filePath)=>{
+    filePath = path.join(__dirname,'../..',filePath);
+    fs.unlink(filePath,err=>console.log(err));
 }
