@@ -17,7 +17,7 @@ exports.createBLogPost = (req,res,next) =>{
         throw err;
     }
 
-    // end middleware
+    // end middleware check
     const title = req.body.title;
     const image = req.file.path;
     const content = req.body.content;
@@ -84,6 +84,53 @@ exports.getPostById =(req,res,next) => {
             });
         }
 
+    })
+    .catch(err =>{
+        next(err);
+    })
+}
+exports.updatePostById =(req,res,next)=>{
+    const errors = validationResult(req)
+    // middleware check
+    if(!errors.isEmpty()){
+        const err = new Error('Invalid Input')
+        err.errorStatus = 400;
+        err.data = errors.array();
+        throw err;
+
+    }
+    if(!req.file){
+        const err = new Error('Image Harus di Upload')
+        err.errorStatus = 422;
+        throw err;
+    }
+
+    // end middleware check
+
+    const title = req.body.title;
+    const image = req.file.path;
+    const content = req.body.content;
+    const postId = req.params.postId;
+
+    BlogPost.findById(postId)
+    .then(post => {
+        if(!post){
+            const err = new Error('ID Tidak Ditemukan');
+            err.errorStatus = 404;
+            throw err;
+        }else{
+            post.title = title;
+            post.content = content;
+            post.image = image;
+            
+            return post.save();
+        }
+    })
+    .then(result =>{
+        res.status(200).json({
+            message:'Update Data Berhasil',
+            data:result
+        })
     })
     .catch(err =>{
         next(err);

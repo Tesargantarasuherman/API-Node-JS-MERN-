@@ -164,3 +164,9 @@ create model
 // Get Data By id
     create route in routes/route.js
     create methode in controller
+// Update Data By id
+    create route in routes/route.js (use PUT or FETCH)
+    create methode in controller 
+    in route add vaidation LIKE route Create
+    in controller@method add postID (ex 'const postId = req.params.postId;')//req.params.postId=>from route
+    find by ID from model 
