@@ -1,8 +1,10 @@
 const {validationResult} = require('express-validator');
 const BlogPost = require ('../models/blog');
+const User = require ('../models/user');
 const path = require('path');
 const fs = require('fs');
 const { count } = require('../models/blog');
+const { response } = require('express');
 // Tambah Data Post
 exports.createBLogPost = (req,res,next) =>{
     const errors = validationResult(req)
@@ -24,24 +26,36 @@ exports.createBLogPost = (req,res,next) =>{
     const title = req.body.title;
     const image = req.file.path;
     const content = req.body.content;
+    
+        let idS = '6073ea88e4d3d02eafc3d632';
 
-    const Posting = new BlogPost({
-        post_id :1,
-        title:title,
-        image:image,
-        content : content,
-        author:{
-            uid:1,
-            name:'iamsuherman'
-        }
-    })
-    Posting.save().then(result =>{
-        res.status(201).json({
-            message : 'Create Blog Success',
-            data:result
-        });
-        next()
-    })
+        User.findOne({_id:idS}).then(post => {
+            let dataUser =''
+            if(post){
+                id = post._id;
+                name = post.name;
+                const Posting = new BlogPost({
+                    title:title,
+                    image:image,
+                    content : content,
+                    author:{
+                        id:id,
+                        name:name
+                    }
+                })
+                Posting.save().then(result =>{
+                    res.status(201).json({
+                        message : 'Create Blog Success',
+                        data:result
+                    });
+                    next()
+                })
+            }
+        })
+        .catch(err =>{
+            next(err);
+        })
+
     // res.status(201).json({
     //     message : 'Create Blog Success',
     //     data:{

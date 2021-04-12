@@ -1,24 +1,22 @@
+const User = require ('../models/user');
+var md5 = require('md5');/*npm i md5 */
+
+
 exports.register = (req,res,next) =>{
-    const nama = req.body.nama;
+    const name = req.body.name;
     const email =req.body.email;
-    const password =req.body.password;
+    const password = md5(req.body.password);
     
-    // const result = {
-    //     message:'Register Success',
-    //     data:{
-    //         id:1,
-    //         nama:nama,
-    //         email:email
-    //     }
-    // }
-    // res.status(201).json(result)
-    res.status(201).json({
-        message:'Register Success',
-        data:{
-            id:1,
-            nama:nama,
-            email:email
-        }
-    });
-    next()
+    const UserPost = new User({
+        name :name,
+        email:email,
+        password:password,
+    })
+    UserPost.save().then(result =>{
+        res.status(201).json({
+            message : 'Create User Success',
+            data:result
+        });
+        next()
+    })
 }

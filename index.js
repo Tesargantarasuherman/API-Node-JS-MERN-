@@ -31,7 +31,7 @@ const fileFilter = (req,file,cb)=>{
 }
 //end setup multer
 
-app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.urlencoded({ extended: false }))
 
 // middleware multer
 app.use(multer({storage:fileStorage,fileFilter:fileFilter}).single('image'));

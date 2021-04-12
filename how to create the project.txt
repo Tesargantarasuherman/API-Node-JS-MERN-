@@ -129,7 +129,7 @@ declaration to index.js
     input the password
     add the function Connect
 //Setup mongodb
-create model
+    in folder src/model create file model_name.js
     in model import mongoose
              import Schema
              create a new Schema
