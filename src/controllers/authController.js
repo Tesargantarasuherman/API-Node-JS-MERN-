@@ -15,6 +15,7 @@ exports.register = (req,res,next) =>{
         let UserPost = new User({
             name :req.body.name,
             email:req.body.email,
+            role:req.body.role,
             password:hashedPass,
         })
         UserPost.save().then(result =>{
@@ -44,9 +45,10 @@ exports.login = (req,res,next) =>{
                     });
                 }
                 if(result){
-                   let token = jwt.sign({name:user.name},'secretValue',{expiresIn:'1h'}) 
+                   let token = jwt.sign({role:user.role},'secretValue',{expiresIn:'1h'}) 
                    res.json({
                        message:'Login Successfull',
+                       data:user,
                        token
                    })
                 }else{
