@@ -2,7 +2,9 @@ const express = require('express');
 const {body} =require('express-validator');
 const router = express.Router();
 
-const blogController =require('../controllers/blogController');
+const blogController  = require('../controllers/blogController');
+const authenticate    =  require('../controllers/middleware/authenticate')
+
 
 router.post('/post',
 [
@@ -12,7 +14,7 @@ router.post('/post',
 
 // router.get('/posts?page=1&perPage=5',blogController.getAllPosts);
 
-router.get('/posts',blogController.getAllPosts);
+router.get('/posts',authenticate,blogController.getAllPosts);
 router.get('/post/:postId',blogController.getPostById);
 router.put('/post/:postId',[
     body('title').isLength({min:5}).withMessage('input title minimum 5 karakter'),

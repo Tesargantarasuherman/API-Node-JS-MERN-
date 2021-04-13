@@ -30,8 +30,7 @@ exports.createBLogPost = (req,res,next) =>{
         let idS = '6073ea88e4d3d02eafc3d632';
 
         User.findOne({_id:idS}).then(post => {
-            let dataUser =''
-            if(post){
+            
                 id = post._id;
                 name = post.name;
                 const Posting = new BlogPost({
@@ -50,7 +49,6 @@ exports.createBLogPost = (req,res,next) =>{
                     });
                     next()
                 })
-            }
         })
         .catch(err =>{
             next(err);
