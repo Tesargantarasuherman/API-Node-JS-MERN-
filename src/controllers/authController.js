@@ -86,3 +86,7 @@ exports.login = (req,res,next) =>{
           }
       })
 }
+exports.logout = (req,res,next) =>{
+    delete req.session;
+    res.redirect('/login');
+}
