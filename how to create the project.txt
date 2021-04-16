@@ -185,3 +185,21 @@ declaration to index.js
     get data from model
     create the function Pagination
 
+//Authentication
+    Create Model User
+    Create Register
+        create route in routes/route.js (use DELETE)
+        create methode in controller  
+        crate function register
+        check validation user in database by email if true return "user has been registered" else create user
+        create validation form
+    Create Login
+        create route in routes/route.js (use DELETE)
+        create methode in controller  
+        npm install jwt
+        crate function login
+    Authenticate
+         require('jsonwebtoken')
+         create function auth
+         in route add the function from auth
+

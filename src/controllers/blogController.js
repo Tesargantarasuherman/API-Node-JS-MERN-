@@ -26,8 +26,9 @@ exports.createBLogPost = (req,res,next) =>{
     const title = req.body.title;
     const image = req.file.path;
     const content = req.body.content;
+    const id_penulis = req.body.id_penulis;
     
-        let idS = '6073ea88e4d3d02eafc3d632';
+        let idS = id_penulis;
 
         User.findOne({_id:idS}).then(post => {
             

@@ -88,5 +88,8 @@ exports.login = (req,res,next) =>{
 }
 exports.logout = (req,res,next) =>{
     delete req.session;
+    res.status(200).json({
+        message : 'Anda Telah Keluar',
+    });
     res.redirect('/login');
 }

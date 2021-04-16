@@ -14,7 +14,7 @@ const authenticate = (req,res,next)=>{
         })
     }
 }
-
+// fungsi role user
 const authRole=(role)=>{
     return (req,res,next)=>{
         if(req.user.role !== role){
