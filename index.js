@@ -8,6 +8,7 @@ const app = express();
 const authRoutes = require('./src/routes/auth');
 const blogRoutes = require('./src/routes/blog');
 const instrukturRoutes = require('./src/routes/instruktur');
+const kursusRoutes = require('./src/routes/kursus');
 
 // setup multer
 const fileStorage = multer.diskStorage({
@@ -53,6 +54,7 @@ app.use((req,res,next)=>{
 app.use('/v1/auth',authRoutes);
 app.use('/v1/blog',blogRoutes);
 app.use('/v1/instruktur',instrukturRoutes);
+app.use('/v1/kursus',kursusRoutes);
 // function errors
 app.use((error,req,res,next)=>{
     const status = error.errorStatus || 500;
