@@ -3,8 +3,8 @@ const BlogPost = require ('../models/blog');
 const User = require ('../models/user');
 const path = require('path');
 const fs = require('fs');
-const { count } = require('../models/blog');
-const { response } = require('express');
+// const { count } = require('../models/blog');
+// const { response } = require('express');
 // Tambah Data Post
 exports.createBLogPost = (req,res,next) =>{
     const errors = validationResult(req)
@@ -170,10 +170,11 @@ exports.updatePostById =(req,res,next)=>{
             err.errorStatus = 404;
             throw err;
         }else{
+            //hapus image sebelumnya
+            deleteImage(post.image);
             post.title = title;
             post.content = content;
             post.image = image;
-            
             return post.save();
         }
     })
