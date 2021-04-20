@@ -14,6 +14,9 @@ const Kelas = new Schema({
         type: String,
         required: true
     },
+    subkelas: {
+        type: Object,
+    },
 }, {timestamps: true})
 
 // module.exports = mongoose.model('nama_model','format_model)

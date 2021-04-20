@@ -29,27 +29,24 @@ exports.detailKursus = (req, res, next) => {
             error.errorStatus = 404;
             throw error;
         } else {
-            var data_kursus = result;
+            let data_kursus = result;
+
             instruktur.findById(result.id_instruktur).then(instruktur => {
+
                 KelasModel.find({id_kursus: result._id}).then(kelas => {
-                    kelas.forEach(kelas => {
-                        SubKelasModel.find({id_kelas: kelas._id}).then(subkelas => {
-                            var data = {kelas,subkelas}
-                            console.log(data)
-                            res.status(200).json({
-                                message: 'Data Kursus Berhasil Di Panggil',
-                                data: {
-                                    data_kursus,
-                                    instruktur,
-                                    data
-                                }
-                            });
-                        })
+                    SubKelasModel.find({id_kelas: kelas._id}).then(subkelas => {
+                        res.status(200).json({
+                            message: 'Data Kursus Berhasil Di Panggil',
+                            data: {
+                                data_kursus,
+                                instruktur,
+                                kelas,
+                            }
+                        });
                     });
+                });
 
-                })
             })
-
         }
 
     }).catch(err => {
