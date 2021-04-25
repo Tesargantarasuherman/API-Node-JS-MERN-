@@ -30,22 +30,19 @@ exports.detailKursus = (req, res, next) => {
             throw error;
         } else {
             let data_kursus = result;
+            let data_kelas = [];
 
-            instruktur.findById(result.id_instruktur).then(instruktur => {
-
-                KelasModel.find({id_kursus: result._id}).then(kelas => {
-                    SubKelasModel.find({id_kelas: kelas._id}).then(subkelas => {
-                        res.status(200).json({
-                            message: 'Data Kursus Berhasil Di Panggil',
-                            data: {
-                                data_kursus,
-                                instruktur,
-                                kelas,
-                            }
-                        });
+            KelasModel.find({id_kursus: result._id}).then(kelas => {
+                instruktur.findById(result.id_instruktur).then(instruktur => {
+                    res.status(200).json({
+                        message: 'Data Kursus Berhasil Di Panggil',
+                        data: {
+                            data_kursus,
+                            instruktur,
+                            kelas
+                        }
                     });
                 });
-
             })
         }
 
