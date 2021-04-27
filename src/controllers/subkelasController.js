@@ -47,7 +47,7 @@ exports.updateSubKelas = (req, res, next) => {
 }
 exports.detailSubKelas = (req, res, next) => {
     let idSubKelas = req.params.id
-    KelasModel.findOne({},{
+    KelasModel.find({},{
         subkelas:{
             $elemMatch:{
                 id:idSubKelas
