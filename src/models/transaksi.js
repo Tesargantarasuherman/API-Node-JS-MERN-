@@ -10,7 +10,7 @@ const Transaksi = new Schema({
         type: String,
         required: true
     },
-    total_price: {
+    harga_total: {
         type: String,
         required: true
     },

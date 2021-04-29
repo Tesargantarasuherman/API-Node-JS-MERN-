@@ -11,6 +11,7 @@ const instrukturRoutes = require('./src/routes/instruktur');
 const kursusRoutes = require('./src/routes/kursus');
 const kelasRoutes = require('./src/routes/kelas');
 const subKelasRoutes = require('./src/routes/subkelas');
+const transaksiRoutes = require('./src/routes/transaksi');
 
 // setup multer
 const fileStorage = multer.diskStorage({
@@ -47,7 +48,7 @@ app.use('/image',express.static(path.join(__dirname,'images'))) /* jika ada pema
 // end handle error to call image
 
 app.use((req,res,next)=>{
-    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Origin','3000');
     res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers','Content-Type','Authorization');
     next()
@@ -59,6 +60,7 @@ app.use('/v1/instruktur',instrukturRoutes);
 app.use('/v1/kursus',kursusRoutes);
 app.use('/v1/kelas',kelasRoutes);
 app.use('/v1/subkelas',subKelasRoutes);
+app.use('/v1/transaksi',transaksiRoutes);
 // function errors
 app.use((error,req,res,next)=>{
     const status = error.errorStatus || 500;
@@ -69,7 +71,7 @@ app.use((error,req,res,next)=>{
 // mongoose.connect('mongodb+srv://iamsuherman:*Password*@cluster0.w3nsw.mongodb.net/*Database_name*?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true })
 mongoose.connect('mongodb+srv://iamsuherman:Fk89tTvm6Yx48qrM@cluster0.w3nsw.mongodb.net/blog?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true })
 .then(()=>{
-    app.listen(3000,()=>console.log('Connection Success'));
+    app.listen(3001,()=>console.log('Connection Success'));
 })
 .catch(err=> console.log(err));
 

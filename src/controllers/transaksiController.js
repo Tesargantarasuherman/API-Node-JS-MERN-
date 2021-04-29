@@ -1,22 +1,28 @@
 const kursus = require('../models/kursus');
-const instruktur = require('../models/instruktur');
-const KelasModel = require('../models/kelas');
-const SubKelasModel = require('../models/subkelas');
+const modelTransaksi = require('../models/transaksi');
 
 exports.tambahTransaksi = (req, res, next) => {
+    let idKursus = req.params.idKursus;
+    let harga_kursus = null
 
-    let Kursus = new kursus({
-        id_instruktur: req.body.id_instruktur,
-        judul_kursus: req.body.judul_kursus,
-        foto_kursus: req.body.foto_kursus,
-        harga_kursus: req.body.harga_kursus,
-        tipe_kursus: req.body.tipe_kursus
+    modelTransaksi.findOne({id_user: req.body.id_user, id_kursus: idKursus}).then(result => {
+        if (!result) {
+            kursus.find({_id: idKursus}).then(result => {
+
+                harga_kursus = result[0].harga_kursus
+                
+                let Transaksi = new modelTransaksi({id_kursus: idKursus, id_user: req.body.id_user, harga_total: harga_kursus, status_transaksi: req.body.status_transaksi})
+                Transaksi.save().then(result => {
+                    res.status(201).json({message: 'Pembelian Sukses', data: result});
+                    next()
+                }).catch(err => {
+                    next(err);
+                })
+            })
+        } else {
+            res.status(401).json({message: 'Kursus Sudah Di Beli,Silahkan Lanjutkan Pembayaran', data: result});
+        }
     })
-    Kursus.save().then(result => {
-        res.status(201).json({message: 'Create Kursus Success', data: result});
-        next()
-    }).catch(err => {
-        next(err);
-    })
+
+
 }
-
