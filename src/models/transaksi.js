@@ -6,6 +6,10 @@ const Transaksi = new Schema({
         type: String,
         required: true
     },
+    data_kursus: {
+        type: Object,
+        required: true
+    },
     id_user: {
         type: String,
         required: true
