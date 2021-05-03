@@ -109,6 +109,7 @@ exports.getAllPosts = (req,res,next)=>{
             data : result,
             totalData : totalItems,
             per_page : perPage,
+            total_page:Math.ceil(totalItems/perPage),
             current_page : currentPage,
         });
     })
