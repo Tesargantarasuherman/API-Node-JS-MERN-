@@ -30,7 +30,7 @@ exports.ambilDetailKelasSaya = (req, res, next) => {
             const id = transaksi[0].id_kursus;
             kursus.findById(id).then(result => {
                 if (!result) {
-                    res.status(200).json({message: 'Data Kursus Berhasil Di Panggil', data: {}});
+                    res.status(200).json({message: 'Data Kursus Tidak Ada', data: {}});
                 } else {
                     if (transaksi[0].status_transaksi == 0) {
                         res.status(200).json({message: 'Kursus Belum di bayar', data: {

@@ -55,17 +55,33 @@ exports.detailKursus = (req, res, next) => {
     })
 }
 exports.semuaKursus = (req,res,next)=>{
+    const currentPage = req.query.page || 1;
+    const perPage = req.query.perPage || 5 ;/* || is default value */
+    let totalItems;
     let data = new Object();
     
-    kursus.find().then(result => {
-            res.status(200).json({
-                message: 'Data Kursus Berhasil Di Panggil',
-                data: {
-                    result,
-                }
-            });
-    }).catch(err => {
-        next(err);
+    kursus.find().find()
+    .countDocuments()
+    .then( count => {
+
+       totalItems = count;
+
+       return kursus.find()
+       .skip((parseInt(currentPage - 1) * perPage))
+       .limit(parseInt(perPage)); 
+    })
+    .then(result => {
+        res.status(200).json({
+            message:'Data Blog Post Berhasil Di Panggil',
+            data : result,
+            totalData : totalItems,
+            per_page : perPage,
+            total_page:Math.ceil(totalItems/perPage),
+            current_page : currentPage,
+        });
+    })
+    .catch(err=>{
+        next(err)
     })
 
 }
