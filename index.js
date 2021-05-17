@@ -74,5 +74,5 @@ mongoose.connect('mongodb+srv://iamsuherman:Fk89tTvm6Yx48qrM@cluster0.w3nsw.mong
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
-    app.listen(base_URL, () => console.log('Connection Success'));
+    app.listen(process.env.PORT || base_URL, () => console.log('Connection Success'));
 }).catch(err => console.log(err));
