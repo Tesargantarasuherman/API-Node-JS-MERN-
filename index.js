@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
-const base_URL = 'https://loremipsum-mern.netlify.app/' ;
+const base_URL = '' ;
 const app = express();
 app.use(cors())
 
@@ -74,5 +74,5 @@ mongoose.connect('mongodb+srv://iamsuherman:Fk89tTvm6Yx48qrM@cluster0.w3nsw.mong
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
-    app.listen(process.env.PORT || base_URL, () => console.log('Connection Success'));
+    app.listen(3001, () => console.log('Connection Success'));
 }).catch(err => console.log(err));
