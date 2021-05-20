@@ -54,7 +54,7 @@ exports.detailSubKelas = (req, res, next) => {
             }
         },
     }).then(result => {
-        res.json(result)
+        res.json(result[0].subkelas)
     }).catch(err => {
         next(err);
     })
