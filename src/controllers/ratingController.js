@@ -17,3 +17,24 @@ exports.tambahRating = (req, res, next) => {
     })
 
 }
+exports.detailRating = (req, res, next) => {
+
+    let idKursus = req.params.idKursus
+    let ratingTotalAwal = [];
+    let ratingTotalAkhir = 0;
+    let ratingFinal = 0;
+    RatingKursus.find({ id_kursus: idKursus }).then(result => {
+        result.forEach(rating => {
+            ratingTotalAwal.push(rating.rating)
+        });
+        ratingTotalAwal.forEach(ratingTotal => {
+            ratingTotalAkhir += ratingTotal
+        })
+        ratingFinal = ratingTotalAkhir / ratingTotalAwal.length
+        res.status(201).json({ message: 'detail rating', data: result, total_rating: ratingFinal });
+        next()
+    }).catch(err => {
+        next(err);
+    })
+
+}
