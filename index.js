@@ -16,6 +16,7 @@ const kursusRoutes = require('./src/routes/kursus');
 const kelasRoutes = require('./src/routes/kelas');
 const subKelasRoutes = require('./src/routes/subkelas');
 const transaksiRoutes = require('./src/routes/transaksi');
+const ratingRoutes = require('./src/routes/rating');
 
 // setup multer
 const fileStorage = multer.diskStorage({
@@ -55,6 +56,7 @@ app.use((req, res, next) => {
     next();
 })
 // endpoint first
+app.use('/v1/rating', ratingRoutes);
 app.use('/v1/auth', authRoutes);
 app.use('/v1/blog', blogRoutes);
 app.use('/v1/instruktur', instrukturRoutes);
