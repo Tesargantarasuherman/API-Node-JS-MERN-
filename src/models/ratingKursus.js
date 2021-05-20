@@ -16,6 +16,7 @@ const RatingKursus = new Schema({
     },
     review: {
         type: String,
+        required: true
     },
 }, {timestamps: true})
 

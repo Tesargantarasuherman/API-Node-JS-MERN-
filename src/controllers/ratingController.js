@@ -2,19 +2,26 @@ const RatingKursus = require('../models/ratingKursus');
 
 exports.tambahRating = (req, res, next) => {
 
+    RatingKursus.findOne({id_user: req.body.id_user, id_kursus:req.body.id_kursus}).then(result => {
+        if (!result) {
+            let Rating = new RatingKursus({
+                id_kursus: req.body.id_kursus,
+                id_user: req.body.id_user,
+                rating: req.body.rating,
+                review: req.body.review
+            })
+            Rating.save().then(result => {
+                res.status(201).json({ message: 'Rating Berhasil Di Tambahkan', data: result });
+                next()
+            }).catch(err => {
+                next(err);
+            })
+        }else{
+            res.status(400).json({ message: 'Rating Sudah Di Tambahkan'});
+        }
+    })
 
-    let Rating = new RatingKursus({
-        id_kursus: req.body.id_kursus,
-        id_user: req.body.id_user,
-        rating: req.body.rating,
-        review: req.body.review
-    })
-    Rating.save().then(result => {
-        res.status(201).json({ message: 'Rating Berhasil Di Tambahkan', data: result });
-        next()
-    }).catch(err => {
-        next(err);
-    })
+
 
 }
 exports.detailRating = (req, res, next) => {
