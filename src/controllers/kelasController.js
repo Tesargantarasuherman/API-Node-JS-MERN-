@@ -3,6 +3,7 @@ const TransaksiModel = require('../models/transaksi');
 const kursus = require('../models/kursus');
 const instruktur = require('../models/instruktur');
 const kelas = require('../models/kelas');
+const KelasSelesai = require('../models/kelasSelesai');
 
 exports.tambahKelas = (req, res, next) => {
 
@@ -75,5 +76,15 @@ exports.ambilDetailKelasSaya = (req, res, next) => {
             res.status(200).json({message: 'Data Kursus Berhasil Di Panggil', data: {}});
         }
 
+    })
+}
+exports.kelasSelesai = (req, res, next) => {
+
+    let Kelas = new KelasSelesai ({id_subkelas: req.body.id_subkelas,id_user:req.body.id_user,selesai_kelas:req.body.selesai_kelas})
+    Kelas.save().then(result => {
+        res.status(201).json({message: 'Create Kelas Success', data: result});
+        next()
+    }).catch(err => {
+        next(err);
     })
 }

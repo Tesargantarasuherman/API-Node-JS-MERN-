@@ -42,7 +42,6 @@ exports.detailKursus = (req, res, next) => {
                         message: 'Data Kursus Berhasil Di Panggil',
                         data: {
                             data_kursus,
-                            instruktur,
                             kelas
                         }
                     });
