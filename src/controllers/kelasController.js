@@ -16,9 +16,24 @@ exports.tambahKelas = (req, res, next) => {
 }
 exports.ambilKelasSaya = (req, res, next) => {
     let idUser = req.params.idUser;
+    let data_kursus = new Object();
+    let data = [];
     TransaksiModel.find({id_user: idUser}).then(result => {
+        result.forEach(res => {
+            data_kursus.id = res.id
+            data_kursus.nama_kursus = res.data_kursus.nama
+            data_kursus.harga = res.harga_total
+            data_kursus.status_transaksi = res.status_transaksi
+            data_kursus.id_kursus = res.id_kursus
+            data_kursus.id_user = res.id_user
+            data_kursus.tipe_kursus = res.data_kursus.tipe_kursus
+            data_kursus.nama_instruktur = res.data_kursus.instruktur.nama
+            data_kursus.foto_instruktur = res.data_kursus.instruktur.foto_profile
+
+            data.push(data_kursus)
+        });
         res.status(200).json({message: 'Data Kelas Saya Berhasil Di Panggil', data: {
-                result
+                data
             }});
     })
 }
