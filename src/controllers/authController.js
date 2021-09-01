@@ -79,7 +79,7 @@ exports.login = (req,res,next) =>{
                 }
             })
           }else{
-            res.status(404).json({
+            res.json({
                 message : 'User Not Found',
             });
           }

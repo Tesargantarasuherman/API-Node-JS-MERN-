@@ -71,7 +71,7 @@ exports.semuaKursus = (req,res,next)=>{
     })
     .then(result => {
         res.status(200).json({
-            message:'Data Kursus Berhasil Di Panggil',
+            message:'Data Kursus Berhasil Di Panggil Semua',
             data : result,
             totalData : totalItems,
             per_page : perPage,

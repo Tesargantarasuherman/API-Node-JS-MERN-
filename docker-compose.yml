@@ -1,0 +1,32 @@
+version: '3.8'
+services: 
+    mongodb-elearning:
+        image: mongo:latest
+        container_name: mongodb-elearning
+        volumes: 
+            - mongodb-data:/data/db
+        networks: 
+            - elearning-networks
+        ports: 
+            - 27017:27017
+    elearning-app:
+        # build otomatis
+        build: .
+        # end build otomatis
+        container_name: elearning-app-container
+        networks:
+            - elearning-networks
+        ports: 
+            - 3001:3001
+        environment: 
+            WAIT_HOSTS: mongo:27017
+            # update otomatis
+        volumes: 
+            - .:/app 
+            # update otomatis
+networks: 
+    elearning-networks:
+volumes: 
+    mongodb-data:
+
+   

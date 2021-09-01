@@ -1,12 +1,18 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParsers = require('body-parser')
 const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const base_URL = '' ;
 const app = express();
-app.use(cors())
+var corsOptions = {
+    origin: '*',
+    credentials : true,
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+   }
+  
+  app.use(cors(corsOptions));
 
 
 const authRoutes = require('./src/routes/auth');
@@ -35,24 +41,24 @@ const fileFilter = (req, file, cb) => {
     }
 }
 // end setup multer
-
-// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParsers.urlencoded({ extended: true }))
 
 // middleware multer
 app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
 // end middleware multer
 
-app.use(bodyParser.json());
+app.use(bodyParsers.json());
 // Handle error to call image
 app.use('/image', express.static(path.join(__dirname, 'images')))
 /* jika ada pemanggilan route images */
 // end handle error to call image
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+app.use(function (req, res, next) {	
+    res.setHeader('Access-Control-Allow-Origin', '*');    
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');   
     res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader("Content-Type", "application/x-www-form-urlencoded");
     next();
 })
 // endpoint first
