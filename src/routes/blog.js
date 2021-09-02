@@ -16,8 +16,8 @@ router.post('/post',
 router.get('/posts',authenticate,authRole('admin'),blogController.getAllPosts);
 router.get('/post/:postId',blogController.getPostById);
 router.put('/post/:postId',[
-    body('title').isLength({min:5}).withMessage('input title minimum 5 karakter'),
-    body('content').isLength({min:5}).withMessage('input content mimimum 5 karakter')
+    body('title').isLength({min:5}).withMessage('title minimum 5 karakter'),
+    body('content').isLength({min:5}).withMessage('content mimimum 5 karakter')
 ],blogController.updatePostById);
 router.delete('/post/:postId',blogController.deletePostById)
 
