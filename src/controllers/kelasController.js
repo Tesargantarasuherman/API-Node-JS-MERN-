@@ -64,16 +64,6 @@ exports.ambilDetailKelasSaya = (req, res, next) => {
                         KelasModel.find({ id_kursus: result._id }).then(kelas => {
 
                             kelas[0].subkelas.forEach(klas => {
-                                // KelasSelesai.find().then(selesai=>{
-                                //     if(selesai.id_subkelas == klas.id){
-                                //         data_subkelas.kelas.push({'kelas_selesai':0})
-                                //     }
-                                //     else{
-                                //         data_subkelas.kelas.push({'kelas_selesai':0})
-                                //     }
-                                //     console.log(selesai)
-
-                                // })
                                 data_subkelas.kelas.push(klas)
                                 data_subkelas.kelas.kelas_selesai.push(0)
 

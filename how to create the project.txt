@@ -187,6 +187,7 @@ declaration to index.js
 
 //Authentication
     Create Model User
+    npm i bcryptjs
     Create Register
         create route in routes/route.js (use DELETE)
         create methode in controller  
