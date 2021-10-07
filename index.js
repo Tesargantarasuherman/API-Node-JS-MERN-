@@ -42,13 +42,13 @@ const fileFilter = (req, file, cb) => {
     }
 }
 // end setup multer
-app.use(bodyParsers.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 
 // middleware multer
 app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
 // end middleware multer
 
-app.use(bodyParsers.json());
+app.use(express.json());
 // Handle error to call image
 app.use('/image', express.static(path.join(__dirname, 'images')))
 /* jika ada pemanggilan route images */

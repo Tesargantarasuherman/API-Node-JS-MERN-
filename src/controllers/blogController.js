@@ -33,14 +33,14 @@ exports.createBLogPost = (req,res,next) =>{
         User.findOne({_id:idS}).then(post => {
             
                 id = post._id;
-                name = post.name;
+                nama = post.name;
                 const Posting = new BlogPost({
                     title:title,
                     image:image,
                     content : content,
                     author:{
                         id:id,
-                        name:name
+                        name:nama
                     }
                 })
                 Posting.save().then(result =>{
