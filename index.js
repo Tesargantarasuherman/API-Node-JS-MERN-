@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParsers = require('body-parser')
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
@@ -78,7 +79,8 @@ app.use((error, req, res, next) => {
     res.status(status).json({message: message, data: data});
 })
 // mongoose.connect('mongodb+srv://iamsuherman:*Password*@cluster0.w3nsw.mongodb.net/*Database_name*?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true })
-mongoose.connect('mongodb+srv://iamsuherman:Fk89tTvm6Yx48qrM@cluster0.w3nsw.mongodb.net/blog?retryWrites=true&w=majority', {
+dotenv.config();
+mongoose.connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {

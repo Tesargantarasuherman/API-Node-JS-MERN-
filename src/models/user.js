@@ -7,6 +7,8 @@ const User = new Schema({
         required: true
     },
     role: {
+        enum:["basic","admin"],
+        default:"basic",
         type: String,
         required: true
     },
